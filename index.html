@@ -8,43 +8,19 @@
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
 /* ====== Purple theme (light/dark) ====== */
-:root {
-  --primary: #7c3aed;       /* violet-600 */
-  --primary-700: #6d28d9;   /* violet-700 */
-  --primary-200: #e9d5ff;   /* violet-200 */
-  --bg: #ffffff;
-  --bg-2: #f3f4f6;
-  --text: #0f172a;
-  --muted: #6b7280;
-  --success: #10b981;
-  --warn: #f59e0b;
-  --danger: #ef4444;
-  --card: #ffffff;
-  --border: rgba(15,23,42,.08);
-  --shadow: 0 8px 24px rgba(2,6,23,.08);
-}
-:root[data-theme="dark"] {
-  --bg: #0f172a;
-  --bg-2: #111827;
-  --text: #e5e7eb;
-  --muted: #94a3b8;
-  --card: #111827;
-  --border: rgba(255,255,255,.12);
-  --shadow: 0 10px 28px rgba(0,0,0,.45);
-}
-/* Base */
+:root { --primary:#7c3aed; --primary-700:#6d28d9; --primary-200:#e9d5ff; --bg:#ffffff; --bg-2:#f3f4f6; --text:#0f172a; --muted:#6b7280; --success:#10b981; --warn:#f59e0b; --danger:#ef4444; --card:#ffffff; --border:rgba(15,23,42,.08); --shadow:0 8px 24px rgba(2,6,23,.08) }
+:root[data-theme="dark"]{ --bg:#0f172a; --bg-2:#111827; --text:#e5e7eb; --muted:#94a3b8; --card:#111827; --border:rgba(255,255,255,.12); --shadow:0 10px 28px rgba(0,0,0,.45) }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Inter,Arial,sans-serif;background:var(--bg);color:var(--text)}
 .hidden{display:none!important}
 .container{max-width:640px;margin:0 auto;padding:12px 12px 80px}
 .header{padding:12px 8px 24px;position:sticky;top:0;background:linear-gradient(180deg, rgba(124,58,237,.12), transparent);backdrop-filter:saturate(140%) blur(4px);z-index:10}
 .row{display:flex;gap:10px;align-items:center;justify-content:space-between}
-.select, .icon-btn{border:2px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;padding:8px 12px;font-weight:600}
+.select,.icon-btn{border:2px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;padding:8px 12px;font-weight:600}
 .icon-btn{display:flex;align-items:center;gap:8px;cursor:pointer}
 .icon{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
 .title{font-size:22px;font-weight:800;margin:12px 0 4px;background:linear-gradient(135deg,var(--primary),var(--primary-700));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .sub{color:var(--muted);font-size:13px}
-/* Tabs */
 .tabs{display:flex;gap:8px;overflow:auto;padding-bottom:8px;margin:8px 0}
 .tab{flex:0 0 auto;border:2px solid var(--border);background:var(--card);padding:10px 14px;border-radius:999px;font-weight:700;cursor:pointer;color:var(--muted)}
 .tab.active{border-color:var(--primary);color:var(--primary);background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(124,58,237,.04))}
@@ -68,21 +44,13 @@ html,body{margin:0;height:100%;font-family:-apple-system,BlinkMacSystemFont,'Seg
 .kbd{padding:4px 8px;border-radius:8px;border:1px solid var(--border);background:var(--bg-2);font-size:12px}
 .toast{position:fixed;right:12px;bottom:12px;left:12px;z-index:50}
 .toast .msg{margin:6px auto;max-width:640px;background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow);padding:12px 14px;border-radius:12px}
-/* Quick skeleton */
-.skel{background:linear-gradient(90deg,transparent, rgba(124,58,237,.14), transparent);border-radius:10px;height:12px}
 </style>
 </head>
 <body>
 <div class="header">
   <div class="row">
-    <select id="lang" class="select" aria-label="Language">
-      <option value="ru">🇷🇺 Русский</option>
-      <option value="en">🇬🇧 English</option>
-    </select>
-    <button id="theme" class="icon-btn" aria-label="Theme">
-      <svg class="icon" viewBox="0 0 24 24"><path d="M12 3v2m0 14v2M4.2 4.2l1.4 1.4m12.8 12.8l1.4 1.4M3 12h2m14 0h2M4.2 19.8l1.4-1.4m12.8-12.8l1.4-1.4"/></svg>
-      <span id="themeLabel">Light</span>
-    </button>
+    <select id="lang" class="select" aria-label="Language"><option value="ru">🇷🇺 Русский</option><option value="en">🇬🇧 English</option></select>
+    <button id="theme" class="icon-btn" aria-label="Theme"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3v2m0 14v2M4.2 4.2l1.4 1.4m12.8 12.8l1.4 1.4M3 12h2m14 0h2M4.2 19.8l1.4-1.4m12.8-12.8l1.4-1.4"/></svg><span id="themeLabel">Light</span></button>
   </div>
   <div class="title" id="title">Remnawave</div>
   <div class="sub" id="subtitle">Личный кабинет Mini App</div>
@@ -133,6 +101,7 @@ html,body{margin:0;height:100%;font-family:-apple-system,BlinkMacSystemFont,'Seg
   <section id="sec-plan" class="section hidden">
     <div class="card">
       <div class="hdr"><div class="h5" id="h_subscription">Подписка</div><span class="badge badge-green" id="subStatus">—</span></div>
+      <div id="renewal" class="card hidden"></div>
       <div class="grid grid-2">
         <div>
           <div class="muted" id="lbl_period">Период</div>
@@ -157,10 +126,11 @@ html,body{margin:0;height:100%;font-family:-apple-system,BlinkMacSystemFont,'Seg
       </div>
       <div class="card" style="margin-top:10px">
         <div class="hdr"><div class="h5" id="h_total">Итого</div></div>
-        <div class="row" style="justify-content:space-between">
+        <div id="priceBox" class="row" style="justify-content:space-between">
           <div>
             <div id="priceCurrent" class="h5">—</div>
             <div class="muted" id="pricePerMonth">—</div>
+            <div class="muted hidden" id="missing">—</div>
           </div>
           <div class="row-wrap">
             <span id="discountBadge" class="badge badge-violet hidden"></span>
@@ -217,12 +187,10 @@ html,body{margin:0;height:100%;font-family:-apple-system,BlinkMacSystemFont,'Seg
   <section id="sec-settings" class="section hidden">
     <div class="card">
       <div class="hdr"><div class="h5">Автоплатёж</div><span id="autopayState" class="badge">—</span></div>
-      <div class="row-wrap">
+      <div id="autopayDays" class="row-wrap"></div>
+      <div class="row-wrap" style="margin-top:8px">
         <button class="btn btn-outline" data-autopay="enable">Включить</button>
         <button class="btn btn-outline" data-autopay="disable">Отключить</button>
-        <button class="btn btn-outline" data-day="same">В день списания</button>
-        <button class="btn btn-outline" data-day="1">За 1 день</button>
-        <button class="btn btn-outline" data-day="3">За 3 дня</button>
       </div>
     </div>
     <div class="card">
@@ -233,212 +201,63 @@ html,body{margin:0;height:100%;font-family:-apple-system,BlinkMacSystemFont,'Seg
         <button id="toggleTheme" class="btn btn-outline">Light/Dark</button>
       </div>
     </div>
-    <div class="card">
-      <div class="hdr"><div class="h5">Документы</div></div>
-      <div class="row-wrap">
-        <a class="btn btn-ghost" href="#" id="offer">Публичная оферта</a>
-        <a class="btn btn-ghost" href="#" id="policy">Политика конфиденциальности</a>
-      </div>
-    </div>
   </section>
 
   <!-- HELP -->
   <section id="sec-help" class="section hidden">
     <div class="card">
       <div class="hdr"><div class="h5">FAQ</div></div>
-      <div class="grid">
-        <div class="card"><div class="h5">Как быстро подключиться?</div><div class="muted">Откройте вкладку «Подключение», выберите платформу, скопируйте ссылку подписки и откройте в клиенте.</div></div>
-        <div class="card"><div class="h5">Не хватает средств?</div><div class="muted">На вкладке «Подписка / Баланс» используйте пресеты пополнения 300/500/1000 и завершите оформление.</div></div>
-      </div>
+      <div class="grid" id="faq"></div>
     </div>
   </section>
 </div>
-
-<!-- Toasts -->
 <div id="toasts" class="toast"></div>
-
 <script>
 const tg = window.Telegram?.WebApp || { initData:'', initDataUnsafe:{}, ready:()=>{}, expand:()=>{}, themeParams:{}, onEvent:()=>{} };
 try{tg.ready();tg.expand();}catch{}
-
-// State
-const S = { lang:'ru', theme:'light', user:null, sub:null, balance:0, currency:'RUB', config:null, cart:{ period:null, traffic:null, devices:1, servers:[] } };
-
-// i18n (минимальный набор; расширю при вашем подтверждении текстов)
-const I18N = {
-  ru: {
-    title:'Remnawave', subtitle:'Личный кабинет Mini App', connect:'Подключение', plan:'Подписка / Баланс', ref:'Рефералы', devices:'Устройства и серверы', settings:'Настройки', help:'Справка',
-    copy:'Копировать', openClient:'Открыть клиент', testConn:'Проверить подключение',
-    period:'Период', traffic:'Трафик', devicesL:'Устройства', serversL:'Серверы', total:'Итого', buy:'Оформить', balance:'Баланс', fastTopup:'Быстрое пополнение',
-    enable:'Включить', disable:'Отключить', same:'В день списания', day1:'За 1 день', day3:'За 3 дня',
-    toastCopied:'Скопировано', toastError:'Ошибка',
-  },
-  en: {
-    title:'Remnawave', subtitle:'Personal Mini App', connect:'Connect', plan:'Plan / Balance', ref:'Referrals', devices:'Devices & Servers', settings:'Settings', help:'Help',
-    copy:'Copy', openClient:'Open client', testConn:'Test connection',
-    period:'Period', traffic:'Traffic', devicesL:'Devices', serversL:'Servers', total:'Total', buy:'Purchase', balance:'Balance', fastTopup:'Quick top up',
-    enable:'Enable', disable:'Disable', same:'On renewal day', day1:'1 day before', day3:'3 days before',
-    toastCopied:'Copied', toastError:'Error',
-  }
-};
-
-function t(key){ return I18N[S.lang]?.[key] || I18N.ru[key] || key }
-function money(v){ try{return new Intl.NumberFormat(S.lang,{style:'currency',currency:S.currency||'RUB'}).format(v)}catch{return v+ ' '+(S.currency||'RUB')}}
-
-// Theme & Lang init
-(function initPrefs(){
-  const lsL = localStorage.getItem('miniapp-lang');
-  const lsT = localStorage.getItem('miniapp-theme');
-  S.lang = (lsL||tg?.initDataUnsafe?.user?.language_code||'ru').startsWith('ru')?'ru':'en';
-  S.theme = lsT || (tg?.themeParams?.bg_color && tg.themeParams.bg_color !== '#ffffff' ? 'dark':'light');
-  applyLang(); applyTheme();
-})();
-
-function applyLang(){
-  document.getElementById('lang').value = S.lang;
-  document.getElementById('title').textContent = t('title');
-  document.getElementById('subtitle').textContent = t('subtitle');
-  document.getElementById('tab-connect').textContent = t('connect');
-  document.getElementById('tab-plan').textContent = t('plan');
-  document.getElementById('tab-ref').textContent = t('ref');
-  document.getElementById('tab-devices').textContent = t('devices');
-  document.getElementById('tab-settings').textContent = t('settings');
-  document.getElementById('tab-help').textContent = t('help');
-}
-function applyTheme(){
-  document.documentElement.setAttribute('data-theme', S.theme);
-  document.getElementById('themeLabel').textContent = S.theme==='dark'?'Dark':'Light';
-}
-
-document.getElementById('lang').addEventListener('change', (e)=>{ S.lang = e.target.value; localStorage.setItem('miniapp-lang',S.lang); applyLang(); renderAll(); });
-['theme','toggleTheme'].forEach(id=>{ const el=document.getElementById(id); if(el) el.addEventListener('click',()=>{ S.theme = S.theme==='dark'?'light':'dark'; localStorage.setItem('miniapp-theme',S.theme); applyTheme(); });});
-
-// Tabs
-const tabs = document.getElementById('tabs');
-tabs.addEventListener('click',(e)=>{const btn=e.target.closest('.tab'); if(!btn) return; document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active')); btn.classList.add('active');
-  const k=btn.dataset.tab; document.querySelectorAll('section[id^="sec-"]').forEach(s=>s.classList.add('hidden')); document.getElementById('sec-'+k).classList.remove('hidden');
-  if(k==='plan') ensurePlanLoaded(); if(k==='devices') ensureDevicesLoaded(); if(k==='ref') ensureRefLoaded(); if(k==='connect') ensureServersLoaded();});
-
-// Toasts
-function toast(msg){ const wrap=document.getElementById('toasts'); const d=document.createElement('div'); d.className='msg'; d.textContent=msg; wrap.appendChild(d); setTimeout(()=>{d.style.opacity='0'; setTimeout(()=>d.remove(),300)},2400); }
-
-// API
-const API_BASE = '/miniapp';
-async function api(path, data=null, method='POST'){ const opt={ method, headers:{'Content-Type':'application/json'}, body: data?JSON.stringify({initData:tg?.initData||'', ...data}):JSON.stringify({initData:tg?.initData||''}) };
-  const res = await fetch(API_BASE+path, opt); if(!res.ok) throw new Error('HTTP '+res.status); return await res.json(); }
-
-// Load config + session
-async function bootstrap(){ try{
-  S.config = await api('/app-config',{},'POST');
-  const sess = await api('/session',{},'POST');
-  S.user = sess.user; S.sub = sess.subscription; S.balance = sess.balance; S.currency = sess.currency||'RUB';
-  renderAll(); }
-  catch(e){ console.error(e); toast(t('toastError')); }}
-
-function renderAll(){ renderConnect(); renderPlan(); renderRef(); renderDevices(); }
-
+const S = { lang:'ru', theme:'light', user:null, sub:null, balanceK:0, currency:'RUB', referral:null, branding:null };
+const I18N={ru:{title:'Remnawave',subtitle:'Личный кабинет Mini App',connect:'Подключение',plan:'Подписка / Баланс',ref:'Рефералы',devices:'Устройства и серверы',settings:'Настройки',help:'Справка',copy:'Копировать',openClient:'Открыть клиент',testConn:'Проверить подключение',period:'Период',traffic:'Трафик',devicesL:'Устройства',serversL:'Серверы',total:'Итого',buy:'Оформить',balance:'Баланс',fastTopup:'Быстрое пополнение',enable:'Включить',disable:'Отключить',same:'В день списания',day1:'За 1 день',day3:'За 3 дня',toastCopied:'Скопировано',toastError:'Ошибка'},en:{title:'Remnawave',subtitle:'Personal Mini App',connect:'Connect',plan:'Plan / Balance',ref:'Referrals',devices:'Devices & Servers',settings:'Settings',help:'Help',copy:'Copy',openClient:'Open client',testConn:'Test connection',period:'Period',traffic:'Traffic',devicesL:'Devices',serversL:'Servers',total:'Total',buy:'Purchase',balance:'Balance',fastTopup:'Quick top up',enable:'Enable',disable:'Disable',same:'On renewal day',day1:'1 day before',day3:'3 days before',toastCopied:'Copied',toastError:'Error'}};
+function t(k){return I18N[S.lang]?.[k]||I18N.ru[k]||k}
+function moneyK(k){if(k==null)return '—';try{const v=(k/100);return new Intl.NumberFormat(S.lang,{style:'currency',currency:S.currency||'RUB'}).format(v)}catch{return (k/100)+' '+(S.currency||'RUB')}}
+(function init(){const lsL=localStorage.getItem('miniapp-lang');const lsT=localStorage.getItem('miniapp-theme');S.lang=(lsL||tg?.initDataUnsafe?.user?.language_code||'ru').startsWith('ru')?'ru':'en';S.theme=lsT||(tg?.themeParams?.bg_color&&tg.themeParams.bg_color!=='#ffffff'?'dark':'light');applyLang();applyTheme();})();
+function applyLang(){document.getElementById('lang').value=S.lang;document.getElementById('title').textContent=t('title');document.getElementById('subtitle').textContent=t('subtitle');['connect','plan','ref','devices','settings','help'].forEach(id=>{document.getElementById('tab-'+id).textContent=t(id)})}
+function applyTheme(){document.documentElement.setAttribute('data-theme',S.theme);document.getElementById('themeLabel').textContent=S.theme==='dark'?'Dark':'Light'}
+document.getElementById('lang').addEventListener('change',e=>{S.lang=e.target.value;localStorage.setItem('miniapp-lang',S.lang);applyLang();renderAll()});['theme','toggleTheme'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('click',()=>{S.theme=S.theme==='dark'?'light':'dark';localStorage.setItem('miniapp-theme',S.theme);applyTheme()})});
+const tabs=document.getElementById('tabs');tabs.addEventListener('click',e=>{const b=e.target.closest('.tab');if(!b)return;document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');const k=b.dataset.tab;document.querySelectorAll('section[id^="sec-"]').forEach(s=>s.classList.add('hidden'));document.getElementById('sec-'+k).classList.remove('hidden');if(k==='plan') loadPurchaseOptions(); if(k==='devices') loadDevicesAndServers(); if(k==='ref') renderRef(); if(k==='connect') renderConnect()});
+function toast(msg){const wrap=document.getElementById('toasts');const d=document.createElement('div');d.className='msg';d.textContent=msg;wrap.appendChild(d);setTimeout(()=>{d.style.opacity='0';setTimeout(()=>d.remove(),300)},2400)}
+const API='/miniapp';
+async function api(path, body={}){const res=await fetch(API+path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({init_data:tg?.initData||'',...body})});if(!res.ok) throw new Error('HTTP '+res.status);return await res.json()}
+async function bootstrap(){try{const d=await api('/subscription');S.user=d.user;S.balanceK=d.balance_kopeks??Math.round((d.balance_rubles||0)*100);S.currency=d.balance_currency||'RUB';S.sub=d;S.referral=d.referral;S.branding=d.branding;renderAll()}catch(e){console.error(e);toast(t('toastError'))}}
+function renderAll(){renderConnect();renderPlan();renderRef();}
 // CONNECT
-function renderConnect(){ document.getElementById('h_connect_quick').textContent = S.lang==='ru'?'Подключиться за 30 сек':'Connect in 30s';
-  document.getElementById('badge_recommended').textContent = S.lang==='ru'?'Рекомендуем':'Recommended';
-  document.getElementById('p_connect_pick').textContent = S.lang==='ru'?'1) Выберите платформу':'1) Pick your platform';
-  document.getElementById('p_connect_copy').textContent = S.lang==='ru'?'2) Скопируйте ссылку подписки':'2) Copy subscription link';
-  document.getElementById('openClient').textContent = t('openClient'); document.getElementById('testConnect').textContent=t('testConn');
-  const link = S.sub?.subscriptionLink || S.config?.subscription_link || '';
-  document.getElementById('subLink').value = link;
-}
-function ensureServersLoaded(){ if(renderConnect.serversLoaded) return; loadServers(); }
-async function loadServers(){ try{ const d = await api('/servers',{},'POST'); const wrap=document.getElementById('servers'); wrap.innerHTML='';
-  (d.connected||[]).forEach(s=>{ const c=document.createElement('div'); c.className='card'; c.innerHTML=`<div class="row" style="justify-content:space-between;gap:8px"><div class="row" style="gap:8px"><div class="kbd">${s.flag||'🌐'}</div><div><div class="h5">${s.name}</div><div class="muted">${s.location||''}</div></div></div><button class="btn btn-outline" data-sid="${s.id}">Отключить</button></div>`; wrap.appendChild(c); });
-  (d.available||[]).forEach(s=>{ const c=document.createElement('div'); c.className='card'; c.innerHTML=`<div class="row" style="justify-content:space-between;gap:8px"><div class="row" style="gap:8px"><div class="kbd">${s.flag||'🌐'}</div><div><div class="h5">${s.name}</div><div class="muted">${s.location||''}</div></div></div><button class="btn btn-primary" data-sid="${s.id}">Подключить</button></div>`; wrap.appendChild(c); });
-  wrap.addEventListener('click',(e)=>{ const b=e.target.closest('button[data-sid]'); if(!b) return; toggleServer(b.dataset.sid); });
-  document.getElementById('serversSummary').textContent = `${(d.connected||[]).length} / ${(d.available||[]).length+(d.connected||[]).length}`;
-  renderConnect.serversLoaded = true; }catch(e){ console.error(e); }}
-async function toggleServer(id){ try{ await api('/servers/apply',{toggle:id},'POST'); toast('OK'); ensureServersLoaded(); }catch(e){ toast(t('toastError')); }}
-
+function renderConnect(){document.getElementById('h_connect_quick').textContent=S.lang==='ru'?'Подключиться за 30 сек':'Connect in 30s';document.getElementById('badge_recommended').textContent=S.lang==='ru'?'Рекомендуем':'Recommended';document.getElementById('p_connect_pick').textContent=S.lang==='ru'?'1) Выберите платформу':'1) Pick your platform';document.getElementById('p_connect_copy').textContent=S.lang==='ru'?'2) Скопируйте ссылку подписки':'2) Copy subscription link';document.getElementById('openClient').textContent=t('openClient');document.getElementById('testConnect').textContent=t('testConn');const link=S.sub?.subscription_url||S.sub?.happ_link||'';document.getElementById('subLink').value=link;loadServersSummary()}
+async function loadServersSummary(){try{const d=S.sub;const wrap=document.getElementById('servers');wrap.innerHTML='';(d.connected_servers||[]).forEach(s=>{const c=document.createElement('div');c.className='card';c.innerHTML=`<div class="row" style="justify-content:space-between;gap:8px"><div class="row" style="gap:8px"><div class="kbd">🌐</div><div><div class="h5">${s.name}</div></div></div><button class="btn btn-outline" data-uuid="${s.uuid}">Отключить</button></div>`;wrap.appendChild(c)});document.getElementById('serversSummary').textContent=`${(d.connected_servers||[]).length}`;wrap.addEventListener('click',e=>{const b=e.target.closest('button[data-uuid]');if(!b)return;toggleServer(b.dataset.uuid)})}catch(e){}}
+async function toggleServer(uuid){try{await api('/subscription/servers/update',{serverUuids:[uuid]});toast('OK');const d=await api('/subscription');S.sub=d;renderConnect()}catch(e){toast(t('toastError'))}}
 // PLAN & BALANCE
-function renderPlan(){ document.getElementById('h_subscription').textContent = S.lang==='ru'?'Подписка':'Subscription';
-  const st=document.getElementById('subStatus'); const status = S.sub?.status||'—'; st.textContent = status==='active'?(S.lang==='ru'?'Активна':'Active'):status;
-  document.getElementById('h_total').textContent = t('total'); document.getElementById('h_balance').textContent = t('balance');
-  document.getElementById('p_fast_topup').textContent = t('fastTopup');
-  document.getElementById('btnBuy').textContent = t('buy');
-  document.getElementById('balanceVal').textContent = money(S.balance);
-}
-async function ensurePlanLoaded(){ if(ensurePlanLoaded.loaded) return; ensurePlanLoaded.loaded=true; try{
-  const opts = await api('/subscription/options',{},'POST');
-  // periods
-  const pr = document.getElementById('periods'); pr.innerHTML='';
-  (opts.periods||[]).forEach(p=>{ const b=document.createElement('button'); b.className='btn btn-outline'; b.dataset.val=p.value; const perMonth=p.per_month?` • ≈ ${money(p.per_month)}/мес`:''; const save=p.discount?` • −${p.discount}%`:''; b.textContent=`${p.label}${save}${perMonth}`; b.addEventListener('click',()=>{S.cart.period=p.value; updatePrice(opts)}); pr.appendChild(b); });
-  // traffic
-  const tf = document.getElementById('traffic'); tf.innerHTML='';
-  (opts.traffic||[]).forEach(x=>{ const b=document.createElement('button'); b.className='btn btn-outline'; b.dataset.val=x.value; b.textContent=x.label; b.addEventListener('click',()=>{S.cart.traffic=x.value; updatePrice(opts)}); tf.appendChild(b); });
-  // devices
-  document.getElementById('devMinus').addEventListener('click',()=>{ S.cart.devices=Math.max(1,(S.cart.devices||1)-1); document.getElementById('devValue').textContent=S.cart.devices; updatePrice(opts)});
-  document.getElementById('devPlus').addEventListener('click',()=>{ S.cart.devices=Math.min(opts.devices?.max||10,(S.cart.devices||1)+1); document.getElementById('devValue').textContent=S.cart.devices; updatePrice(opts)});
-  // servers picks (limit info)
-  const sp=document.getElementById('srvPick'); sp.innerHTML=''; (opts.servers||[]).slice(0,10).forEach(s=>{ const b=document.createElement('button'); b.className='btn btn-outline'; b.textContent=s.name; b.addEventListener('click',()=>{ const i=S.cart.servers.indexOf(s.id); if(i>=0) S.cart.servers.splice(i,1); else S.cart.servers.push(s.id); b.classList.toggle('btn-primary'); updatePrice(opts) }); sp.appendChild(b); });
-  // price
-  updatePrice(opts);
-  // pay methods
-  const pm = await api('/payments/methods',{},'POST'); const pmw=document.getElementById('payMethods'); pmw.innerHTML='';
-  (pm.methods||[]).forEach(m=>{ const b=document.createElement('button'); b.className='btn btn-outline'; b.textContent=m.title; b.dataset.method=m.code; pmw.appendChild(b); });
-  pmw.addEventListener('click',(e)=>{ const b=e.target.closest('button[data-method]'); if(!b) return; createPayment(parseFloat(document.getElementById('topupAmount').value||0)||300, b.dataset.method) });
-  // topup presets
-  document.querySelectorAll('.preset').forEach(p=>p.addEventListener('click',()=>{ document.getElementById('topupAmount').value=p.dataset.amount }));
-  document.getElementById('topupBtn').addEventListener('click',()=>{ const amt=parseFloat(document.getElementById('topupAmount').value||0); if(amt>0) createPayment(amt) });
-  document.getElementById('btnBuy').addEventListener('click', submitPurchase);
- }catch(e){ console.error(e); toast(t('toastError')); }}
-
-function updatePrice(opts){ // клиентский калькулятор (приближённо), сервер всё перепроверит
-  const p = (opts.price_base||0) + priceFromList(opts.periods, S.cart.period) + priceFromList(opts.traffic, S.cart.traffic) + (opts.devices?.unit_price||0)*((S.cart.devices||1)-1);
-  document.getElementById('priceCurrent').textContent = money(p||0);
-  const pm = approxPerMonth(opts, p); document.getElementById('pricePerMonth').textContent = pm?('≈ '+money(pm)+'/мес'):'—';
-  const disc = bestDiscount(opts, S.cart.period); const badge=document.getElementById('discountBadge'); if(disc){ badge.textContent = `Выгода ${disc}%`; badge.classList.remove('hidden'); } else { badge.classList.add('hidden'); }
-}
-function priceFromList(list, val){ if(!list) return 0; const it=list.find(x=>x.value===val); return it?.price||0 }
-function approxPerMonth(opts, total){ const months = monthFromPeriod(S.cart.period, opts); return months? total/months : 0 }
-function monthFromPeriod(val, opts){ const it=(opts.periods||[]).find(x=>x.value===val); return it?.months||0 }
-function bestDiscount(opts, val){ const it=(opts.periods||[]).find(x=>x.value===val); return it?.discount||0 }
-
-async function submitPurchase(){ try{ const r = await api('/subscription/purchase',{ cart:S.cart },'POST'); if(r.need_payment){ // отправим на вкладке пополнения
-    toast('Недостаточно средств'); document.querySelector('[data-tab="plan"]').click(); }
-  else{ toast('Оформлено'); await refreshBalance(); } }catch(e){ toast(t('toastError')); }}
-async function refreshBalance(){ try{ const d = await api('/subscription',{},'POST'); S.sub=d.subscription; S.balance=d.balance; renderPlan(); }catch(e){}}
-
+let PurchaseOpts=null;async function renderPlan(){document.getElementById('h_subscription').textContent=S.lang==='ru'?'Подписка':'Subscription';const st=document.getElementById('subStatus');st.textContent=S.sub?.user?.subscription_status||'—';document.getElementById('h_total').textContent=t('total');document.getElementById('h_balance').textContent=t('balance');document.getElementById('p_fast_topup').textContent=t('fastTopup');document.getElementById('btnBuy').textContent=t('buy');document.getElementById('balanceVal').textContent=S.sub?.balance_label||moneyK(S.balanceK);renderRenewal()}
+async function renderRenewal(){try{const r=await api('/subscription/renewal/options');const box=document.getElementById('renewal');box.innerHTML='';if(!(r.periods||[]).length){box.classList.add('hidden');return}box.classList.remove('hidden');const cur=document.createElement('div');cur.className='row-wrap';(r.periods||[]).forEach(p=>{const b=document.createElement('button');b.className='btn '+(p.isRecommended?'btn-primary':'btn-outline');b.textContent=`${p.title||p.days||p.months||''} • ${p.priceLabel||moneyK(p.priceKopeks||0)}${p.discountPercent?` • −${p.discountPercent}%`:''}${p.pricePerMonthLabel?` • ${p.pricePerMonthLabel}`:''}`;b.addEventListener('click',()=>doRenew(p.id));cur.appendChild(b)});box.appendChild(cur)}catch(e){}}
+async function doRenew(periodId){try{const r=await api('/subscription/renewal',{periodId});if(r.success){toast('Продлено');const d=await api('/subscription');S.sub=d;renderPlan()}else toast(t('toastError'))}catch(e){toast(t('toastError'))}}
+async function loadPurchaseOptions(){try{PurchaseOpts=await api('/subscription/purchase/options');renderPurchaseSelector(PurchaseOpts)}catch(e){console.error(e)}}
+function renderPurchaseSelector(opts){const pr=document.getElementById('periods');const tf=document.getElementById('traffic');const sp=document.getElementById('srvPick');pr.innerHTML='';tf.innerHTML='';sp.innerHTML='';const data=opts.data||{};const periods=data.periods||data.periodOptions||[];const traffic=data.traffic||data.trafficOptions||[];const servers=(data.servers?.available)||data.servers||[];periods.forEach(p=>{const b=document.createElement('button');b.className='btn btn-outline';b.dataset.val=p.id||p.value;const perMonth=p.pricePerMonthLabel?` • ${p.pricePerMonthLabel}`:'';const save=p.discountPercent?` • −${p.discountPercent}%`:'';b.textContent=`${p.title||p.label||p.id}${save}${perMonth}`;b.addEventListener('click',()=>preview({periodId:p.id||p.value}));pr.appendChild(b)});traffic.forEach(x=>{const b=document.createElement('button');b.className='btn btn-outline';b.dataset.val=x.value; b.textContent=x.label||(`${x.value} GB`);b.addEventListener('click',()=>preview({trafficValue:x.value}));tf.appendChild(b)});servers.slice(0,10).forEach(s=>{const b=document.createElement('button');b.className='btn btn-outline';b.textContent=s.name||s.uuid;b.addEventListener('click',()=>{preview({serverUuids:[s.uuid]})});sp.appendChild(b)});document.getElementById('devMinus').onclick=()=>preview({deviceLimit:Math.max(1,((preview.state?.deviceLimit)||1)-1)});document.getElementById('devPlus').onclick=()=>preview({deviceLimit:Math.min( (data.devices?.max||10), ((preview.state?.deviceLimit)||1)+1)});document.getElementById('btnBuy').onclick=purchase}
+async function preview(delta){preview.state=preview.state||{};Object.assign(preview.state,delta);try{const r=await api('/subscription/purchase/preview',{ selection:preview.state });const pv=r.preview||{};document.getElementById('priceCurrent').textContent=pv.priceLabel||moneyK(pv.totalKopeks||0);document.getElementById('pricePerMonth').textContent=pv.pricePerMonthLabel||'';const disc = pv.discountPercent;const badge=document.getElementById('discountBadge'); if(disc){badge.textContent=`Выгода ${disc}%`;badge.classList.remove('hidden')}else{badge.classList.add('hidden')}const miss=document.getElementById('missing'); if(pv.missingAmountKopeks>0){miss.classList.remove('hidden');miss.textContent=`Не хватает ${moneyK(pv.missingAmountKopeks)}`}else miss.classList.add('hidden')}catch(e){}}
+async function purchase(){try{const r=await api('/subscription/purchase',{ selection:preview.state });if(r.success){toast('Оформлено');const d=await api('/subscription');S.sub=d;renderPlan()}else toast(t('toastError'))}catch(e){toast(t('toastError'))}}
 // Payments
-async function createPayment(amount, method){ try{
-  const res = await api('/payments/create',{ amount, method },'POST');
-  if(res.url){ window.open(res.url,'_blank'); pollPayment(res.paymentId); }
-  else if(res.intent){ // Stars / in-app
-    pollPayment(res.paymentId);
-  } else { toast('Создано'); pollPayment(res.paymentId); }
-} catch(e){ toast(t('toastError')); }}
-async function pollPayment(id){ const start=Date.now(); const wait=ms=>new Promise(r=>setTimeout(r,ms));
-  while(Date.now()-start < 180000){ try{ const s = await api('/payments/status',{ paymentId:id },'POST'); if(s.status==='success'){ toast('Платёж зачислен'); await refreshBalance(); return } if(s.status==='failed' || s.status==='expired'){ toast('Платёж не подтверждён'); return } }catch(e){}
-    await wait(5000);
-  }
-}
-
+async function loadPayments(){const pm=await api('/payments/methods');const w=document.getElementById('payMethods');w.innerHTML='';(pm.methods||[]).forEach(m=>{const b=document.createElement('button');b.className='btn btn-outline';b.textContent=m.name||m.id;b.dataset.method=m.id;w.appendChild(b)});w.onclick=(e)=>{const b=e.target.closest('button[data-method]');if(!b)return;const amt=parseFloat(document.getElementById('topupAmount').value||0)||300;createPayment(amt,b.dataset.method)}}
+async function createPayment(amount, method){try{const payload = Number.isInteger(amount)?{amountKopeks:amount*100}:{amountRubles:amount};const r=await api('/payments/create',{method, ...payload});if(r.payment_url){window.open(r.payment_url,'_blank')}pollPayment([{method, paymentId:r.extra?.paymentId, paymentLinkId:r.extra?.paymentLinkId, invoiceId:r.extra?.invoiceId, startedAt:new Date().toISOString()}])}catch(e){toast(t('toastError'))}}
+async function pollPayment(items){const start=Date.now();const wait=ms=>new Promise(r=>setTimeout(r,ms));while(Date.now()-start<180000){try{const s=await api('/payments/status',{payments:items});const ok=(s.results||[]).some(x=>x.is_paid||x.status==='success');if(ok){toast('Платёж зачислен');const d=await api('/subscription');S.sub=d;renderPlan();return}const bad=(s.results||[]).some(x=>x.status==='failed'||x.status==='expired');if(bad){toast('Платёж не подтверждён');return}}catch(e){}await wait(5000)}}
 // REFERRALS
-function ensureRefLoaded(){ if(ensureRefLoaded.loaded) return; loadRef(); }
-async function loadRef(){ try{ const d = await api('/referral',{},'POST'); document.getElementById('refLink').value=d.link||''; document.getElementById('refInvited').textContent=d.invited||0; document.getElementById('refActive').textContent=d.active||0; document.getElementById('refEarned').textContent= money(d.earned||0); ensureRefLoaded.loaded=true; }catch(e){}}
-
-// DEVICES & SERVERS tab
-function ensureDevicesLoaded(){ if(ensureDevicesLoaded.loaded) return; loadDevicesAndServers(); }
-async function loadDevicesAndServers(){ try{ const d = await api('/devices',{},'POST'); const w=document.getElementById('devices'); w.innerHTML=''; (d.devices||[]).forEach(dev=>{ const c=document.createElement('div'); c.className='row'; c.style.justifyContent='space-between'; c.innerHTML=`<div><div class="h5">${dev.name}</div><div class="muted">${dev.os||''} • ${dev.lastSeen||''}</div></div><button class="btn btn-outline" data-rm="${dev.id}">Сбросить</button>`; w.appendChild(c); });
- w.addEventListener('click', async (e)=>{ const b=e.target.closest('button[data-rm]'); if(!b) return; try{ await api('/devices/remove',{ id:b.dataset.rm },'POST'); toast('Сброшено'); loadDevicesAndServers(); }catch(_){ toast(t('toastError')); } });
- const s=document.getElementById('allServers'); s.innerHTML=''; (d.servers||[]).forEach(x=>{ const c=document.createElement('div'); c.className='card'; c.innerHTML=`<div class="row" style="justify-content:space-between"><div class="row" style="gap:8px"><div class="kbd">${x.flag||'🌐'}</div><div><div class="h5">${x.name}</div><div class="muted">${x.location||''}</div></div></div><button class="btn ${x.connected?'btn-outline':'btn-primary'}" data-sid="${x.id}">${x.connected?'Отключить':'Подключить'}</button></div>`; s.appendChild(c); });
- s.addEventListener('click',(e)=>{ const b=e.target.closest('button[data-sid]'); if(!b) return; toggleServer(b.dataset.sid); });
- ensureDevicesLoaded.loaded=true; }catch(e){}}
-
-// Quick actions
-['copySub','copyRef'].forEach(id=>{ const el=document.getElementById(id); if(el) el.addEventListener('click', async ()=>{ const val=document.getElementById(id==='copySub'?'subLink':'refLink').value; try{ await navigator.clipboard.writeText(val); toast(t('toastCopied')); }catch{ toast(t('toastError')); } });});
-
-document.getElementById('openClient').addEventListener('click',()=>{ const link=document.getElementById('subLink').value; if(link) window.open(link,'_blank'); });
-document.getElementById('testConnect').addEventListener('click',()=>toast('Проверяем…'));
-
-tg.onEvent?.('themeChanged',()=>{ const dark = tg?.themeParams?.bg_color && tg.themeParams.bg_color!=='#ffffff'; S.theme = dark?'dark':'light'; applyTheme(); });
-
-bootstrap();
+function renderRef(){const r=S.referral||{};document.getElementById('refLink').value=r.referral_link||'';document.getElementById('refInvited').textContent=r.stats?.invited_count||0;document.getElementById('refActive').textContent=r.stats?.active_referrals_count||0;document.getElementById('refEarned').textContent=r.stats?.total_earned_label||moneyK(r.stats?.total_earned_kopeks||0)}
+// DEVICES & SERVERS
+async function loadDevicesAndServers(){try{const d=S.sub;const w=document.getElementById('devices');w.innerHTML='';(d.connected_devices||[]).forEach(dev=>{const c=document.createElement('div');c.className='row';c.style.justifyContent='space-between';c.innerHTML=`<div><div class="h5">${dev.device_model||dev.platform||'Device'}</div><div class="muted">${dev.platform||''} • ${dev.last_seen||''}</div></div><button class="btn btn-outline" data-hwid="${dev.hwid||''}">Сбросить</button>`;w.appendChild(c)});w.onclick=async e=>{const b=e.target.closest('button[data-hwid]');if(!b)return;try{await api('/devices/remove',{hwid:b.dataset.hwid});toast('Сброшено');const d=await api('/subscription');S.sub=d;loadDevicesAndServers()}catch{toast(t('toastError'))}};const s=document.getElementById('allServers');s.innerHTML='';(d.connected_servers||[]).concat([]).forEach(x=>{const c=document.createElement('div');c.className='card';c.innerHTML=`<div class="row" style="justify-content:space-between"><div class="row" style="gap:8px"><div class="kbd">🌐</div><div><div class="h5">${x.name}</div></div></div><button class="btn btn-outline" data-uuid="${x.uuid}">Отключить</button></div>`;s.appendChild(c)});s.onclick=e=>{const b=e.target.closest('button[data-uuid]');if(!b)return;toggleServer(b.dataset.uuid)}}catch(e){}}
+// FAQ
+async function loadFaq(){try{const d=S.sub?.faq;const w=document.getElementById('faq');w.innerHTML='';(d?.items||[]).forEach(it=>{const c=document.createElement('div');c.className='card';c.innerHTML=`<div class="h5">${it.title||''}</div><div class="muted">${it.content||''}</div>`;w.appendChild(c)})}catch(e){}}
+// Actions
+['copySub','copyRef'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('click',async()=>{const val=document.getElementById(id==='copySub'?'subLink':'refLink').value;try{await navigator.clipboard.writeText(val);toast(t('toastCopied'))}catch{toast(t('toastError'))}})});
+document.getElementById('openClient').onclick=()=>{const link=document.getElementById('subLink').value;if(link)window.open(link,'_blank')};
+document.getElementById('testConnect').onclick=()=>toast('Проверяем…');
+document.getElementById('topupBtn').onclick=()=>{const amt=parseFloat(document.getElementById('topupAmount').value||0);if(amt>0)createPayment(amt)};document.querySelectorAll('.preset').forEach(p=>p.onclick=()=>{document.getElementById('topupAmount').value=p.dataset.amount});
+tg.onEvent?.('themeChanged',()=>{const dark=tg?.themeParams?.bg_color&&tg.themeParams.bg_color!=='#ffffff';S.theme=dark?'dark':'light';applyTheme()});
+bootstrap();loadPayments();loadFaq();
 </script>
 </body>
 </html>
